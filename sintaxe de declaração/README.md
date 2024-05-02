@@ -1,4 +1,4 @@
-# sintaxe de declaração com inicialização de variável
+# Sintaxe de declaração com inicialização de variável
 
 Construir uma sintaxe (de acordo com o modelo) para declaracao e inicializacao de variavel e a partir dela construir arvores de derivacao para os seguintes tokens:
 
