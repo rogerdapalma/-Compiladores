@@ -1,0 +1,7 @@
+q0:q1:q2:q3
+int:doble:x:declaracao
+q3:declaracao
+q0:int:q1
+q0:floar:q1
+q1:x:q2
+q2:;:q3
