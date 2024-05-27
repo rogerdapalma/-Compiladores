@@ -1,0 +1,20 @@
+{
+    "1": {
+        "token": "int",
+        "tipo": "nomeVar",
+        "linha": 1,
+        "ref": null
+    },
+    "2": {
+        "token": "x",
+        "tipo": "nomeVar",
+        "linha": 1,
+        "ref": null
+    },
+    "3": {
+        "token": ";",
+        "tipo": "pv",
+        "linha": 1,
+        "ref": null
+    }
+}
