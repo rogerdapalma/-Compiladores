@@ -1,20 +1,164 @@
 {
     "1": {
-        "token": "int",
+        "token": "void",
         "tipo": "nomeVar",
-        "linha": 1,
+        "linha": 2,
         "ref": null
     },
     "2": {
-        "token": "x",
+        "token": "main",
         "tipo": "nomeVar",
-        "linha": 1,
+        "linha": 2,
         "ref": null
     },
     "3": {
+        "token": "(",
+        "tipo": "apar",
+        "linha": 2,
+        "ref": null
+    },
+    "4": {
+        "token": ")",
+        "tipo": "fpar",
+        "linha": 2,
+        "ref": 3
+    },
+    "5": {
+        "token": "{",
+        "tipo": "ach",
+        "linha": 2,
+        "ref": null
+    },
+    "6": {
+        "token": "if",
+        "tipo": "nomeVar",
+        "linha": 3,
+        "ref": null
+    },
+    "7": {
+        "token": "(",
+        "tipo": "apar",
+        "linha": 3,
+        "ref": null
+    },
+    "8": {
+        "token": "(",
+        "tipo": "apar",
+        "linha": 3,
+        "ref": null
+    },
+    "9": {
+        "token": "a",
+        "tipo": "nomeVar",
+        "linha": 3,
+        "ref": null
+    },
+    "10": {
+        "token": ">=",
+        "tipo": "sinalCompara",
+        "linha": 3,
+        "ref": null
+    },
+    "11": {
+        "token": "b",
+        "tipo": "nomeVar",
+        "linha": 3,
+        "ref": null
+    },
+    "12": {
+        "token": ")",
+        "tipo": "fpar",
+        "linha": 3,
+        "ref": 8
+    },
+    "13": {
+        "token": "&&",
+        "tipo": "conetivo",
+        "linha": 3,
+        "ref": null
+    },
+    "14": {
+        "token": "(",
+        "tipo": "apar",
+        "linha": 3,
+        "ref": null
+    },
+    "15": {
+        "token": "c",
+        "tipo": "nomeVar",
+        "linha": 3,
+        "ref": null
+    },
+    "16": {
+        "token": "<",
+        "tipo": "sinalCompara",
+        "linha": 3,
+        "ref": null
+    },
+    "17": {
+        "token": "d",
+        "tipo": "nomeVar",
+        "linha": 3,
+        "ref": null
+    },
+    "18": {
+        "token": ")",
+        "tipo": "fpar",
+        "linha": 3,
+        "ref": 14
+    },
+    "19": {
+        "token": ")",
+        "tipo": "fpar",
+        "linha": 3,
+        "ref": 7
+    },
+    "20": {
+        "token": "{",
+        "tipo": "ach",
+        "linha": 3,
+        "ref": null
+    },
+    "21": {
+        "token": "imprime",
+        "tipo": "nomeVar",
+        "linha": 4,
+        "ref": null
+    },
+    "22": {
+        "token": "(",
+        "tipo": "apar",
+        "linha": 4,
+        "ref": null
+    },
+    "23": {
+        "token": "a",
+        "tipo": "nomeVar",
+        "linha": 4,
+        "ref": null
+    },
+    "24": {
+        "token": ")",
+        "tipo": "fpar",
+        "linha": 4,
+        "ref": 22
+    },
+    "25": {
         "token": ";",
         "tipo": "pv",
-        "linha": 1,
+        "linha": 4,
         "ref": null
+    },
+    "26": {
+        "token": "}",
+        "tipo": "fch",
+        "linha": 5,
+        "ref": 20
+    },
+    "27": {
+        "token": "}",
+        "tipo": "fch",
+        "linha": 6,
+        "ref": 5
     }
 }

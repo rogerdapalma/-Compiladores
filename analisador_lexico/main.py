@@ -1,29 +1,79 @@
-import os
+import json
 from afd import AFD
 
-# Diretório base onde os arquivos estão localizados
-# Obtém o caminho absoluto do diretório onde o script está localizado
-base_dir = os.path.dirname(os.path.abspath(__file__))
+# Carregar a tabela de transições
+with open('maquina.txt', 'r') as f:
+    transitions = f.read().splitlines()
 
-# Caminhos completos dos arquivos
-# Define o caminho completo para o arquivo de configuração (maquina.txt)
-config_path = os.path.join(base_dir, 'maquina.txt')
-# Define o caminho onde a tabela de símbolos será salva (mesmo diretório base)
-save_path = base_dir
-# Define o caminho completo para o arquivo de entrada (input.c)
-input_path = os.path.join(base_dir, 'input.c')
+# Carregar o código de entrada
+with open('input.c', 'r') as f:
+    input_code = f.read()
 
-# Inicialização do AFD
-# Cria uma instância do AFD passando os caminhos do arquivo de configuração e do diretório de salvamento
-afd = AFD(config_path, save_path)
+# Carregar a tabela de símbolos
+with open('tabela_simbolos.json', 'r') as f:
+    symbol_table = json.load(f)
 
-# Processamento do arquivo de entrada
-# Abre o arquivo de entrada (input.c) para leitura
-with open(input_path, 'r') as file:
-    index = 1  # Inicializa o índice da linha
-    # Itera sobre cada linha do arquivo de entrada
-    for linha in file.readlines():
-        linha = linha.strip()  # Remove espaços em branco no início e no fim da linha
-        afd.exec(linha, index)  # Executa o AFD com a linha atual e o índice da linha
-        index += 1  # Incrementa o índice da linha
-        print()  # Imprime uma linha em branco para separação visual
+# Estados finais e seus tokens
+final_states = {
+    "q1": "inteiro",
+    "q3": "fracionario",
+    "q5": "nomeVar",
+    "q6": "satrib",
+    "q7": "pv",
+    "q9": "virgula",
+    "q10": "sinalCompara",
+    "q11": "apar",
+    "q12": "fpar",
+    "q13": "ach",
+    "q14": "fch",
+    "q15": "acol",
+    "q16": "fcol",
+    "q17": "conetivo"
+}
+
+# Instanciar o AFD
+afd = AFD(transitions, final_states)
+
+# Análise Léxica
+tokens = afd.lexical_analysis(input_code)
+
+# Função para salvar a saída em um arquivo TXT
+def save_output_to_file(tokens, is_syntactically_correct, is_semantically_correct, filename='output.txt'):
+    with open(filename, 'w') as f:
+        f.write('Tokens Identificados:\n')
+        for token, token_type, line, column in tokens:
+            f.write(f'Token: {token}, Tipo: {token_type}, Linha: {line}, Coluna: {column}\n')
+
+        f.write(f'\nAnálise Sintática: {"Correta" if is_syntactically_correct else "Incorreta"}\n')
+        f.write(f'Análise Semântica: {"Correta" if is_semantically_correct else "Incorreta"}\n')
+
+# Análise Sintática
+def syntactic_analysis(tokens):
+    stack = []
+    for token, token_type, _, _ in tokens:
+        if token_type in ["apar", "ach", "acol"]:
+            stack.append((token, token_type))
+        elif token_type in ["fpar", "fch", "fcol"]:
+            if not stack:
+                return False
+            top_token, top_token_type = stack.pop()
+            if (token_type == "fpar" and top_token_type != "apar") or \
+               (token_type == "fch" and top_token_type != "ach") or \
+               (token_type == "fcol" and top_token_type != "acol"):
+                return False
+    return len(stack) == 0
+
+is_syntactically_correct = syntactic_analysis(tokens)
+
+# Análise Semântica
+def semantic_analysis(tokens, symbol_table):
+    for token, token_type, _, _ in tokens:
+        if token_type == "nomeVar" and not any(entry['token'] == token for entry in symbol_table.values()):
+            return False
+    return True
+
+is_semantically_correct = semantic_analysis(tokens, symbol_table)
+
+# Salvar a saída no arquivo TXT
+save_output_to_file(tokens, is_syntactically_correct, is_semantically_correct)
+print("Análise concluída e saída salva em 'output.txt'.")
