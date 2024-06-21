@@ -96,7 +96,7 @@ ID  | TOKEN | TIPO       | LINHA | REF    | COMENTÁRIO
 
 ```
 ###### `____` **COMEÇA COMENTARIO**
-###### `====` **TERMINA COMENTARIO **
+###### `====` **TERMINA COMENTARIO**
 
 ### **Considerações Finais**
 O processador não possui uma "instrução de declaração" per se. A declaração é mais um conceito de linguagens de alto nível para gerenciar o uso da memória. A atribuição, e as operações matemáticas, são diretamente traduzidas em instruções de movimento e operações aritméticas no processador.
