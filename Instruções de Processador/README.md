@@ -49,7 +49,7 @@ Os conjuntos de instruções geralmente incluem operações matemáticas básica
 ```c
 int soma = x + 5;  // Soma 5 ao valor de x
 ```
-```assembly
+```
 add eax, 5  ; Adiciona 5 ao valor no registrador eax
 ```
 
@@ -57,14 +57,14 @@ add eax, 5  ; Adiciona 5 ao valor no registrador eax
 ```c
 int diferenca = x - 5;  // Subtrai 5 do valor de x
 ```
-```assembly
+```
 sub eax, 5  ; Subtrai 5 do valor no registrador eax
 ```
 - Multiplicação `(*)`: Multiplica dois valores.
 ```c
 int produto = x * 5;  // Multiplica x por 5
 ```
-```assembly
+```
 imul eax, 5  ; Multiplica o valor no registrador eax por 5
 ```
 Divisão `(/)`: Divide um valor por outro. Importante notar que a divisão entre inteiros que não resulta em um número inteiro truncará o resultado para o inteiro mais próximo.
@@ -72,11 +72,32 @@ Divisão `(/)`: Divide um valor por outro. Importante notar que a divisão entre
 int quociente = x / 5;  // Divide x por 5
 ```
 
-```assembly
+```
 mov edx, 0   ; Limpa o registrador edx antes da divisão
 mov ecx, 5   ; Coloca o divisor em ecx
 idiv ecx     ; Divide eax por ecx, resultado em eax, resto em edx
 ```
+#
+```c
+int x;
+x = 10;
+```
+
+```sql
+ID  | TOKEN | TIPO       | LINHA | REF    | COMENTÁRIO
+----|-------|------------|-------|--------|------------
+1   | int   | int        | 1     | None   |______________.
+2   | x     | NV         | 1     | None   | DECLARAÇÃO ->|
+3   | ;     | PV         | 1     | None   |==============|
+4   | x     | NV         | 2     | 2      |______________|
+5   | =     | SinalComp. | 2     | None   |ATRIBUIÇÃO    |
+6   | 10    | Inteiro    | 2     | None   |              |
+7   | ;     | PV         | 2     | None   |==============|
+
+```
+###### `____` **COMEÇA COMENTARIO**
+###### `====` **TERMINA COMENTARIO **
+
 ### **Considerações Finais**
 O processador não possui uma "instrução de declaração" per se. A declaração é mais um conceito de linguagens de alto nível para gerenciar o uso da memória. A atribuição, e as operações matemáticas, são diretamente traduzidas em instruções de movimento e operações aritméticas no processador.
 
